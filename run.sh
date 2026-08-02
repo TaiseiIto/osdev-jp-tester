@@ -13,4 +13,10 @@ image_exists() {
 	[ -f $image ] && docker image inspect $(< $1)
 }
 
+remove_image() {
+	docker image rm $(< $1)
+	rm $1
+}
+
+image_exists $image && remove_image $image
 image_exists $image || build_image $image $docker_file
