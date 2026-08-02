@@ -4,6 +4,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get upgrade -y && apt-get install -y build-essential
 RUN apt-get update && apt-get upgrade -y && apt-get install -y git
 RUN apt-get update && apt-get upgrade -y && apt-get install -y ruby-full
+RUN apt-get update && apt-get upgrade -y && apt-get install -y tmux
+RUN apt-get update && apt-get upgrade -y && apt-get install -y vim
+COPY .tmux.conf /root/
+COPY .vimrc /root/
 RUN gem install bundler
 WORKDIR /root/
 EXPOSE 4000
