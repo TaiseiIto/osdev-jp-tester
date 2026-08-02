@@ -3,6 +3,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y git
 WORKDIR /root/
+EXPOSE 4000
 ARG REPOSITORY
 RUN git clone $REPOSITORY osdev-jp
 WORKDIR osdev-jp/
