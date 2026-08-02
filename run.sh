@@ -5,13 +5,14 @@ set -eux
 docker_file=Dockerfile
 image=image.id
 container=container.id
+port=4000
 
 attach_container() {
 	docker attach $(< $container)
 }
 
 build_image() {
-	docker build --iidfile $image $(dirname $docker_file) --build-arg REPOSITORY=$repository --build-arg BRANCH=$branch
+	docker build --iidfile $image $(dirname $docker_file) --build-arg REPOSITORY=$repository --build-arg BRANCH=$branch --build-arg PORT=$port
 }
 
 container_exists() {
@@ -53,7 +54,7 @@ start_container() {
 }
 
 start_server() {
-	docker exec --interactive --tty $(< $container) bundle exec jekyll serve --host 0.0.0.0 --port 4000
+	docker exec --interactive --tty $(< $container) bundle exec jekyll serve --host 0.0.0.0 --port $port
 }
 
 stop_container() {

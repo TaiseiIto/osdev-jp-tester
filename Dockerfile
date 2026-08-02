@@ -6,7 +6,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y git
 RUN apt-get update && apt-get upgrade -y && apt-get install -y ruby-full
 RUN gem install bundler
 WORKDIR /root/
-EXPOSE 4000
 ARG REPOSITORY
 RUN git clone $REPOSITORY osdev-jp
 WORKDIR osdev-jp/
@@ -17,3 +16,5 @@ source "https://rubygems.org"
 gem "github-pages", group: :jekyll_plugins
 EOF
 RUN bundle install
+ARG PORT
+EXPOSE $PORT
