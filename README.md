@@ -1,2 +1,2 @@
 # osdev-jp-tester
-Test osdev.jp web pages locally
+Test [osdev.jp](https://github.com/osdev-jp/osdev-jp.github.io) locally
