@@ -23,7 +23,7 @@ container_runs() {
 }
 
 create_container() {
-	docker create --interactive --tty $(< $image) /bin/bash > $container
+	docker create --interactive --tty $(docker image inspect $(< $image) --format='{{range $port, $_ := .Config.ExposedPorts}}{{$port}} {{end}}' | cut -d '/' -f 1 | while read -r port; do echo --publish $port:$port; done | tr '\n' ' ') $(< $image) /bin/bash > $container
 }
 
 image_exists() {
