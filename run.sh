@@ -6,7 +6,7 @@ docker_file=Dockerfile
 image=image.id
 
 build_image() {
-	docker build --iidfile $1 $(dirname $2)
+	docker build --iidfile $1 $(dirname $2) --build-arg REPOSITORY=$repository --build-arg BRANCH=$branch
 }
 
 image_exists() {
