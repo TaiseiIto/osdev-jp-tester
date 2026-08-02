@@ -8,3 +8,4 @@ RUN git clone $REPOSITORY osdev-jp
 WORKDIR osdev-jp/
 ARG BRANCH
 RUN git checkout $BRANCH
+RUN echo gem \"github-pages\", group: :jekyll_plugins > Gemfile
