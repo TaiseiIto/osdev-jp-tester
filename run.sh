@@ -52,6 +52,10 @@ start_container() {
 	docker start $(< $container)
 }
 
+start_server() {
+	docker exec --interactive --tty $(< $container) bundle exec jekyll serve --host 0.0.0.0 --port 4000
+}
+
 stop_container() {
 	docker stop $(< $container)
 }
@@ -63,4 +67,4 @@ image_exists && remove_image
 image_exists || build_image
 container_exists || create_container
 container_runs || start_container
-attach_container
+start_server
