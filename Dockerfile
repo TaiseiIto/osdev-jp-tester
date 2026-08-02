@@ -7,7 +7,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y ruby-full
 RUN gem install bundler
 WORKDIR /root/
 ARG REPOSITORY
-RUN git clone $REPOSITORY osdev-jp
+RUN git clone --recursive $REPOSITORY osdev-jp
 WORKDIR osdev-jp/
 ARG BRANCH
 RUN git checkout $BRANCH
