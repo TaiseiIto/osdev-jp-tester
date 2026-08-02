@@ -31,6 +31,17 @@ image_exists() {
 	[ -f $image ] && docker image inspect $(< $image)
 }
 
+main() {
+	parse_arguments $@
+	container_runs && stop_container
+	container_exists && remove_container
+	image_exists && remove_image
+	image_exists || build_image
+	container_exists || create_container
+	container_runs || start_container
+	start_server
+}
+
 parse_arguments() {
 	while getopts "r:b:" argument; do
 		case $argument in
@@ -61,11 +72,4 @@ stop_container() {
 	docker stop $(< $container)
 }
 
-parse_arguments $@
-container_runs && stop_container
-container_exists && remove_container
-image_exists && remove_image
-image_exists || build_image
-container_exists || create_container
-container_runs || start_container
-start_server
+main $@

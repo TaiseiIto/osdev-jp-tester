@@ -6,3 +6,5 @@ Test [osdev.jp](https://github.com/osdev-jp/osdev-jp.github.io) locally
 /somewhere $ cd osdev-jp-tester
 /somewhere/osdev-jp-tester $ ./run.sh -r https://github.com/osdev-jp/osdev-jp.github.io -b master
 ```
+
+Then access to `http://localhost:4000/`.
